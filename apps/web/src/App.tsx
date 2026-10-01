@@ -1,4 +1,4 @@
-import { APP_NAME } from '@waiting-room/shared';
+import { APP_NAME, ROOM_CAPACITY } from '@waiting-room/shared';
 
 export function App() {
   return (
@@ -14,7 +14,9 @@ export function App() {
       }}
     >
       <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{APP_NAME}</h1>
-      <p style={{ color: '#94a3b8' }}>Multiplayer 3D portfolio room. Phase 0 foundation running.</p>
+      <p style={{ color: '#94a3b8' }}>
+        Multiplayer 3D portfolio room. Max {ROOM_CAPACITY} visitors per room.
+      </p>
     </main>
   );
 }

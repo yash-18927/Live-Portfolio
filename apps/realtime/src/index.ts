@@ -1,19 +1,20 @@
 import Fastify from 'fastify';
+import { realtimeEnvSchema, healthResponseSchema, type HealthResponse } from '@waiting-room/shared';
+
+const env = realtimeEnvSchema.parse(process.env);
 
 const fastify = Fastify({
-  logger: process.env.NODE_ENV !== 'test',
+  logger: env.NODE_ENV !== 'test',
 });
 
-fastify.get('/health', async (_request, _reply) => {
-  return { status: 'ok' };
+fastify.get('/health', async (_request, _reply): Promise<HealthResponse> => {
+  const response: HealthResponse = { status: 'ok' };
+  return healthResponseSchema.parse(response);
 });
-
-const port = Number(process.env.PORT) || 3002;
-const host = process.env.HOST || '0.0.0.0';
 
 export async function start() {
   try {
-    await fastify.listen({ port, host });
+    await fastify.listen({ port: env.PORT, host: env.HOST });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
@@ -21,7 +22,7 @@ export async function start() {
 }
 
 // Only start listening when executed directly
-if (process.env.NODE_ENV !== 'test') {
+if (env.NODE_ENV !== 'test') {
   start();
 }
 
