@@ -1,0 +1,28 @@
+{
+  "name": "waiting-room",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -n \"web,api,realtime\" -c \"cyan,green,yellow\" \"pnpm --filter @waiting-room/web dev\" \"pnpm --filter @waiting-room/api dev\" \"pnpm --filter @waiting-room/realtime dev\"",
+    "build": "pnpm --filter \"@waiting-room/*\" build",
+    "lint": "eslint .",
+    "typecheck": "pnpm --filter \"@waiting-room/*\" typecheck",
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.20.0",
+    "prettier": "^3.5.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0",
+    "vitest": "^3.0.5"
+  }
+}
