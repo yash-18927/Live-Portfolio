@@ -25,6 +25,9 @@ Thumbs.db
 
 # Test coverage & logs
 coverage
+test-results
+playwright-report
+blob-report
 *.log
 npm-debug.log*
 yarn-debug.log*
